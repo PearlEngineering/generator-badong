@@ -56,13 +56,13 @@ Usage:
     ? What is the base name of your application? new app name
 ```
 
-### Scaffold
+### Generate
 Generates and wires a model, view, repository and test artifacts.
 
 Example:
 ```bash
-    $ yo badong:scaffold
-    ? What is the model name to scaffold? newModel
+    $ yo badong:generate
+    ? What is the name? newModel
 ```
 
 ## Team
