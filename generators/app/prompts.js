@@ -34,7 +34,7 @@ function getDefaultAppName() {
  * @param {object} generator - generator instance to use
  */
 async function askForAppName(generator) {
-    generator.answers = await generator.prompt({
+    generator.options = await generator.prompt({
         type: 'input',
         name: 'appName',
         validate: input => {

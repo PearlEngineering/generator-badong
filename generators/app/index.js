@@ -32,8 +32,8 @@ module.exports = class extends Generator {
     }
 
     writing() {
-        const appName = this.answers.appName.toLowerCase().replace(/[\W_]+/g,"_");
-        const nameDashSeparated = this.answers.appName.toLowerCase().replace(/[^0-9a-zA-Z]+/g,"-");
+        const appName = this.options.appName.toLowerCase().replace(/[\W_]+/g,"_");
+        const nameDashSeparated = this.options.appName.toLowerCase().replace(/[^0-9a-zA-Z]+/g,"-");
 
         // copy all template files and folder structure
         this.fs.copyTpl(

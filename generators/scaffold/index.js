@@ -37,15 +37,15 @@ module.exports = class extends Generator {
     writing() {
         // copy all template files and folder structure
         const parentFolderName = this.destinationPath().split('/').slice(-1)[0] 
-        const nameSnakeCase = this.answers.modelName.toLowerCase().replace(/[\W_]+/g,"_");
-        const nameDashSeparated = this.answers.modelName.toLowerCase().replace(/[\W_]+/g,"-");
-        const nameCamelCase = _.camelCase(this.answers.modelName);
+        const nameSnakeCase = this.options.modelName.toLowerCase().replace(/[\W_]+/g,"_");
+        const nameDashSeparated = this.options.modelName.toLowerCase().replace(/[\W_]+/g,"-");
+        const nameCamelCase = _.camelCase(this.options.modelName);
         const namePascalCase = _.upperFirst(nameCamelCase);
         this.fs.copyTpl(
             glob.sync(this.templatePath('**/*'), { dot: true }), 
             this.destinationPath(), 
             {
-                name: this.answers.modelName,
+                name: this.options.modelName,
                 nameDashSeparated: nameDashSeparated,
                 nameSnakeCase: nameSnakeCase,
                 nameCamelCase: nameCamelCase,

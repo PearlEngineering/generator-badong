@@ -34,7 +34,7 @@ function getDefaultModelName() {
  * @param {object} generator - generator instance to use
  */
 async function askForModelName(generator) {
-    generator.answers = await generator.prompt({
+    generator.options = await generator.prompt({
         type: 'input',
         name: 'modelName',
         validate: input => {
