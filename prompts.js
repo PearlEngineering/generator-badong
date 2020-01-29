@@ -46,7 +46,7 @@ async function askForName(generator) {
             }
             return true;
         },
-        message: 'What is the  name to scaffold?',
+        message: 'What is the name?',
         default: getDefaultName()
     });
 }
