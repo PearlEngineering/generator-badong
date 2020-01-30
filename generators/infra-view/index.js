@@ -79,8 +79,28 @@ module.exports = class extends Generator {
         insertIndex = data.indexOf('urlpatterns = [') + 2;
         insertLine(filename)                
             .contentSync(
-                `\tpath('${nameDashSeparated}s/<int:${nameSnakeCase}_id>', ${namePascalCase}ViewsAPI.as_view()),\n` +
-                `\tpath('${nameDashSeparated}s/', ${namePascalCase}ViewsAPI.as_view()),\n`
+                `\tpath('${nameDashSeparated}s/<int:${nameSnakeCase}_id>', ${namePascalCase}ViewsAPI.as_view()),\n`
+                )
+            .at(insertIndex);
+        
+        this.log(`Registered ${namePascalCase} to ${filename}!`)
+
+        // Add path to api schema
+        filename = this.destinationPath('api-schema.yml');
+        data = fs.readFileSync(filename).toString().split('\n');
+        insertIndex = data.indexOf('paths:') + 2;
+
+        insertLine(filename)
+            .contentSync(
+                `  /${ nameDashSeparated }s:\n`+
+                `    get:\n`+
+                `      operationId: ${ nameDashSeparated }\n`+
+                `      summary: ${ namePascalCase } get endpoint\n`+
+                `      responses:\n`+
+                `        '200':\n`+
+                `          description: Get Succeeded\n`+
+                `      security:\n`+
+                `        type: NONE`
                 )
             .at(insertIndex);
         
