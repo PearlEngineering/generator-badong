@@ -43,7 +43,8 @@ module.exports = class extends Generator {
             '../infra-repo',
             '../infra-view',
             '../infra-serializer',
-            '../test-integration'
+            '../test-integration',
+            '../test-unit'
         ];
         
         subgens.forEach(subgen => me.composeWith(
