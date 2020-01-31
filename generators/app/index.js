@@ -34,13 +34,15 @@ module.exports = class extends Generator {
     writing() {
         const appName = this.options.appName.toLowerCase().replace(/[\W_]+/g,"_");
         const nameDashSeparated = this.options.appName.toLowerCase().replace(/[^0-9a-zA-Z]+/g,"-");
+        const parentFolderName = this.destinationPath().split('/').slice(-1)[0];
 
         // copy all template files and folder structure
         this.fs.copyTpl(
             glob.sync(this.templatePath('**/*'), { dot: true }), 
             this.destinationPath(`${nameDashSeparated}/`), 
             {
-                name: appName
+                name: appName,
+                nameDashSeparated: nameDashSeparated
             }
         );
     }
