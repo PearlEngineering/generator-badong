@@ -60,7 +60,7 @@ module.exports = class extends Generator {
 
         // from .test_module import TestModule
         let filename = this.destinationPath('tests/modules/__init__.py');
-        fs.appendFileSync(filename, `from test_.${nameSnakeCase}_module import ${namePascalCase}Module\n`);
+        fs.appendFileSync(filename, `from .test_${nameSnakeCase}_module import Test${namePascalCase}Module\n`);
         this.log(`${namePascalCase} was appended to ${filename}!`);
 
         // tests/test_settings.py
@@ -73,7 +73,7 @@ module.exports = class extends Generator {
         let insertIndex = data.indexOf('INJECTOR_MODULES = [') + 2;
         insertLine(filename)                
             .contentSync(
-                `    "modules.${namePascalCase}Module",`
+                `    "modules.Test${namePascalCase}Module",`
                 )
             .at(insertIndex);
         
