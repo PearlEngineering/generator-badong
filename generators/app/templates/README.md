@@ -41,7 +41,18 @@
 	$ pip install -r tests/requirements.txt
 	```
 
+- Export required paths:
+	```ssh
+	$ export PYTHONPATH=app/:tests/
+	```
+
+- Run migrations:
+	```ssh
+	$ python app/manage.py makemigrations
+	$ python app/manage.py migrate
+	```
+
 - Run tests
 	```ssh
-	$ pytest
+	$ pytest tests/
 	```
