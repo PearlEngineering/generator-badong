@@ -53,7 +53,6 @@ module.exports = class extends Generator {
             this.destinationPath(), 
             {
                 nameSnakeCase,
-                nameCamelCase,
                 namePascalCase
             }
         );
