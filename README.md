@@ -60,6 +60,19 @@ Available generators:
 
 * [badong](#app) (aka [badong:app](#app))
 * [badong:generate](#generate)
+* [badong:app-dto](#app-dto)
+* [badong:app-model](#app-model)
+* [badong:app-repo](#app-repo)
+* [badong:app-service](#app-service)
+* [badong:app-use-case](#app-use-case)
+* [badong:infra-model](#infra-model)
+* [badong:infra-module](#infra-module)
+* [badong:infra-repo](#infra-repo)
+* [badong:infra-serializer](#infra-serializer)
+* [badong:infra-service](#infra-service)
+* [badong:infra-view](#infra-view)
+* [badong:infra-integration](#infra-integration)
+* [badong:infra-unit](#infra-unit)
 
 ### App
 Sets up a new PearlPay backend microservice, generating all the boilerplate you need to get started.
@@ -76,6 +89,122 @@ Generates and wires a model, view, service, repository and test artifacts.
 Example:
 ```bash
     $ yo badong:generate
+    ? What is the name? newModel
+```
+
+### App-Dto
+Generates application dto artifact.
+
+Example:
+```bash
+    $ yo badong:app-dto
+    ? What is the name? newModel
+```
+
+### App-Model
+Generates application model artifact.
+
+Example:
+```bash
+    $ yo badong:app-model
+    ? What is the name? newModel
+```
+
+### App-Repo
+Generates application repository artifact.
+
+Example:
+```bash
+    $ yo badong:app-repo
+    ? What is the name? newModel
+```
+### App-Service
+Generates application service artifact.
+
+Example:
+```bash
+    $ yo badong:app-service
+    ? What is the name? newModel
+```
+
+### App-Use-Case
+Generates application use-case artifact.
+
+Example:
+```bash
+    $ yo badong:app-use-case
+    ? What is the name? newModel
+```
+
+### Infra-Model
+Generates infrastructure model artifact.
+
+Example:
+```bash
+    $ yo badong:infra-model
+    ? What is the name? newModel
+```
+
+### Infra-Module
+Generates infrastructure module artifact.
+
+Example:
+```bash
+    $ yo badong:infra-module
+    ? What is the name? newModel
+```
+
+### Infra-Repo
+Generates infrastructure repository artifact.
+
+Example:
+```bash
+    $ yo badong:infra-repo
+    ? What is the name? newModel
+```
+
+### Infra-Serializer
+Generates infrastructure serializer artifact.
+
+Example:
+```bash
+    $ yo badong:infra-serializer
+    ? What is the name? newModel
+```
+
+### Infra-Service
+Generates infrastructure service artifact.
+
+Example:
+```bash
+    $ yo badong:infra-service
+    ? What is the name? newModel
+```
+
+### Infra-View
+Generates infrastructure view artifact.
+
+Example:
+```bash
+    $ yo badong:infra-view
+    ? What is the name? newModel
+```
+
+### Test-Integration
+Generates integration test artifact.
+
+Example:
+```bash
+    $ yo badong:test-integration
+    ? What is the name? newModel
+```
+
+### Test-Unit
+Generates unit test artifact.
+
+Example:
+```bash
+    $ yo badong:test-unit
     ? What is the name? newModel
 ```
 
