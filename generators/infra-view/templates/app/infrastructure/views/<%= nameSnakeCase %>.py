@@ -2,46 +2,27 @@ from http import HTTPStatus
 
 from django_injector import inject
 
+from rest_framework import status
 from rest_framework.request import Request
 from rest_framework.response import Response
 from rest_framework.views import APIView
 
-from application.use_cases.<%= nameSnakeCase %> import <%= namePascalCase %>UseCase
+from infrastructure.serializers import <%= namePascalCase %>Serializer
+
+from application.use_cases import <%= namePascalCase %>UseCase
 
 
-class <%= namePascalCase %>ViewsAPI(APIView):
-    
-    # Handles both 'GET <%= nameSnakeCase %>s/<int:<%= nameSnakeCase %>_id>' and 'GET <%= nameSnakeCase %>s/' paths
+class <%= namePascalCase %>ViewAPI(APIView):
+
     @inject
-    def get(self, request: Request, <%= nameSnakeCase %>_id: int, <%= nameSnakeCase %>_use_case: <%= namePascalCase %>UseCase, format=None):
-        print(request.META)
-        print(request.data)
-        print('<%= nameSnakeCase %>_id:', <%= nameSnakeCase %>_id)
-        return Response(
-            # data={'message': 'Get Request'},
-            data=<%= nameSnakeCase %>_use_case.get_by_id(<%= nameSnakeCase %>_id),
-            status=HTTPStatus.OK
-        )
+    def post(self, request: Request, <%= nameSnakeCase %>_use_case: <%= namePascalCase %>UseCase,
+             format=None):
+        print('request.data:', request.data)
+        serializer = <%= namePascalCase %>Serializer(data=request.data)
+        serializer.is_valid(raise_exception=True)
 
-    def post(self, request: Request, format=None):
-        print(request.META)
-        print(request.data)
-        return Response(
-            data={'message': 'Post Request'},
-            status=HTTPStatus.CREATED
-        )
+        <%= nameSnakeCase %> = serializer.save()
 
-    def put(self, request: Request, format=None):
-        print(request.META)
-        print(request.data)
-        return Response(
-            data={'message': 'Post Request'},
-            status=HTTPStatus.OK
-        )
+        response = <%= nameSnakeCase %>_use_case.create(<%= nameSnakeCase %>)
 
-    def delete(self, request: Request, format=None):
-        print(request.META)
-        print(request.data)
-        return Response(
-            status=HTTPStatus.NO_CONTENT
-        )
+        return Response(response, status=HTTPStatus.CREATED)

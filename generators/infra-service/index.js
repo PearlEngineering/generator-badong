@@ -17,12 +17,24 @@
  */
 const Generator = require('yeoman-generator');
 const glob = require('glob');
+const _ = require('lodash');
+const fs = require('fs');
+
+let hasOptions = false;
 
 const prompts = require('./../../prompts');
 
 module.exports = class extends Generator {
     
+    constructor(args, opts) {
+        super(args, opts);
+        this.options = opts.options || {};
+        hasOptions = !_.isEmpty(this.options);
+    }
+
     async prompting() {
+        if(hasOptions) return;
+
         let generator = this;
         
         await Promise.all([
@@ -31,27 +43,22 @@ module.exports = class extends Generator {
     }
 
     writing() {
-        let me = this;
-        let options = this.options;
-        let args = { options }
-        let subgens = [
-            '../app-dto',
-            '../app-model',
-            '../app-repo',
-            '../app-service',
-            '../app-use-case',
-            '../infra-model',
-            '../infra-module',
-            '../infra-repo',
-            '../infra-serializer',
-            '../infra-service',
-            '../infra-view',
-            '../test-integration',
-            '../test-unit'
-        ];
-        
-        subgens.forEach(subgen => me.composeWith(
-            require.resolve(subgen), args)
+        const name = this.options.name;
+        const nameSnakeCase = name.toLowerCase().replace(/[\W_]+/g,"_");
+        const nameCamelCase = _.camelCase(name);
+        const namePascalCase = _.upperFirst(nameCamelCase);
+        this.fs.copyTpl(
+            glob.sync(this.templatePath('**'),
+            { dot: true }), 
+            this.destinationPath(), 
+            {
+                nameSnakeCase: nameSnakeCase,
+                namePascalCase: namePascalCase
+            }
         );
+
+        let filename = this.destinationPath('app/infrastructure/services/__init__.py');
+        fs.appendFileSync(filename, `from .${nameSnakeCase} import ${namePascalCase}ServiceImpl\n`);
+        this.log(`${namePascalCase} was appended to ${filename}!`);
     }
 };

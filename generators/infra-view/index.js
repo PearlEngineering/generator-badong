@@ -61,7 +61,7 @@ module.exports = class extends Generator {
         );
 
         let filename = this.destinationPath('app/infrastructure/views/__init__.py');
-        fs.appendFileSync(filename, `from .${nameSnakeCase} import ${namePascalCase}ViewsAPI\n`);
+        fs.appendFileSync(filename, `from .${nameSnakeCase} import ${namePascalCase}ViewAPI\n`);
         this.log(`${namePascalCase} was appended to ${filename}!`);
 
         // Register model to URLs
@@ -71,7 +71,7 @@ module.exports = class extends Generator {
 
         insertLine(filename)
             .contentSync(
-                `from infrastructure.views.${nameSnakeCase} import ${namePascalCase}ViewsAPI\n`
+                `from infrastructure.views.${nameSnakeCase} import ${namePascalCase}ViewAPI`
                 )
             .at(insertIndex);
 
@@ -79,31 +79,32 @@ module.exports = class extends Generator {
         insertIndex = data.indexOf('urlpatterns = [') + 2;
         insertLine(filename)                
             .contentSync(
-                `\tpath('${nameDashSeparated}s/<int:${nameSnakeCase}_id>', ${namePascalCase}ViewsAPI.as_view()),\n`
+                `\tpath('${nameDashSeparated}s', ${namePascalCase}ViewAPI.as_view(), name='${nameSnakeCase}s'),`
                 )
             .at(insertIndex);
         
         this.log(`Registered ${namePascalCase} to ${filename}!`)
 
-        // Add path to api schema
-        filename = this.destinationPath('api-schema.yml');
-        data = fs.readFileSync(filename).toString().split('\n');
-        insertIndex = data.indexOf('paths:') + 2;
+        // TODO: Add me
+        // // Add path to api schema
+        // filename = this.destinationPath('api-schema.yml');
+        // data = fs.readFileSync(filename).toString().split('\n');
+        // insertIndex = data.indexOf('paths:') + 2;
 
-        insertLine(filename)
-            .contentSync(
-                `  /${ nameDashSeparated }s:\n`+
-                `    get:\n`+
-                `      operationId: ${ nameDashSeparated }\n`+
-                `      summary: ${ namePascalCase } get endpoint\n`+
-                `      responses:\n`+
-                `        '200':\n`+
-                `          description: Get Succeeded\n`+
-                `      security:\n`+
-                `        type: NONE`
-                )
-            .at(insertIndex);
+        // insertLine(filename)
+        //     .contentSync(
+        //         `  /${ nameDashSeparated }s:\n`+
+        //         `    get:\n`+
+        //         `      operationId: ${ nameDashSeparated }\n`+
+        //         `      summary: ${ namePascalCase } get endpoint\n`+
+        //         `      responses:\n`+
+        //         `        '200':\n`+
+        //         `          description: Get Succeeded\n`+
+        //         `      security:\n`+
+        //         `        type: NONE`
+        //         )
+        //     .at(insertIndex);
         
-        this.log(`Registered ${namePascalCase} to ${filename}!`)
+        // this.log(`Registered ${namePascalCase} to ${filename}!`)
     }
 };

@@ -1,43 +1,23 @@
 from django.db import models
 
 from domain import <%= namePascalCase %>
-from infrastructure.models import BaseManager, BaseModel
-
-
-class <%= namePascalCase %>Manager(BaseManager):
-
-    def from_entity(self, entity: <%= namePascalCase %>):
-        entity_dict = {
-            "id": entity.id,
-            "name": entity.name,
-            "duration": entity.duration,
-            "view_count": entity.view_count,
-            "created_timestamp": entity.created_timestamp,
-            "last_modified_timestamp": entity.last_modified_timestamp,
-        }
-        <%= name %>_model = self.model(**entity_dict)
-
-        return <%= name %>_model
+from infrastructure.models import BaseModel, BaseManager
 
 
 class <%= namePascalCase %>Model(BaseModel):
-    objects = <%= namePascalCase %>Manager()
-    
-    name = models.CharField(max_length=1024)
-    duration = models.IntegerField()
-    view_count = models.IntegerField()
+    name = models.CharField(max_length=256)
+    age = models.IntegerField()
 
-    def to_entity(self):
-        entity_dict = {
-            "id": self.id,
-            "name": self.name,
-            "duration": self.duration,
-            "view_count": self.view_count,
-            "created_timestamp": self.created_timestamp,
-            "last_modified_timestamp": self.last_modified_timestamp,
-        }
+    objects = BaseManager()
 
-        return <%= namePascalCase %>(**entity_dict)
 
-    def __str__(self):
-        return self.name
+    def entity_class(self):
+        return <%= namePascalCase %>
+
+    class Meta:
+        constraints = [
+            models.UniqueConstraint(
+                fields=['name'],
+                name='unique_name'
+            )
+        ]

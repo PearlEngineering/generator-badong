@@ -18,6 +18,7 @@
 const Generator = require('yeoman-generator');
 const glob = require('glob');
 const _ = require('lodash');
+const fs = require('fs');
 
 let hasOptions = false;
 
@@ -55,5 +56,9 @@ module.exports = class extends Generator {
                 namePascalCase: namePascalCase
             }
         );
+
+        let filename = this.destinationPath('app/application/use_cases/__init__.py');
+        fs.appendFileSync(filename, `from .${nameSnakeCase} import ${namePascalCase}UseCase\n`);
+        this.log(`${namePascalCase} was appended to ${filename}!`);
     }
 };

@@ -1,7 +1,8 @@
 /**
  * Copyright 2020-2020 the original author or authors from the Badong project.
  *
- * This file is part of the Badong project.
+ * This file is part of the Badong project, see https://www.badong.tech/
+ * for more information.
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -18,47 +19,29 @@
 const Generator = require('yeoman-generator');
 const glob = require('glob');
 const _ = require('lodash');
-const fs = require('fs');
 
 let hasOptions = false;
 
-const prompts = require('./../../prompts');
-
 module.exports = class extends Generator {
-    
+
     constructor(args, opts) {
         super(args, opts);
         this.options = opts.options || {};
         hasOptions = !_.isEmpty(this.options);
+
+        this.log('bar opts:', this.options)
     }
+    
+    prompting() {
+        this.log('prompting - bar');
 
-    async prompting() {
         if(hasOptions) return;
-
-        let generator = this;
-        
-        await Promise.all([
-            prompts.askForName(generator)
-        ]);
     }
 
     writing() {
-        const name = this.options.name;
-        const nameSnakeCase = name.toLowerCase().replace(/[\W_]+/g,"_");
-        const nameCamelCase = _.camelCase(name);
-        const namePascalCase = _.upperFirst(nameCamelCase);
-        this.fs.copyTpl(
-            glob.sync(this.templatePath('**'),
-            { dot: true }), 
-            this.destinationPath(), 
-            {
-                nameSnakeCase: nameSnakeCase,
-                namePascalCase: namePascalCase
-            }
-        );
+        this.log('writing - bar');
 
-        let filename = this.destinationPath('app/application/services/__init__.py');
-        fs.appendFileSync(filename, `from .${nameSnakeCase} import ${namePascalCase}Service\n`);
-        this.log(`${namePascalCase} was appended to ${filename}!`);
+        this.log('writing - bar fooName ->', this.options.fooName);
+        // this.log('bar.answers.fooName:', this.answers.fooName);
     }
 };

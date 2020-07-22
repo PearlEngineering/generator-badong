@@ -56,5 +56,9 @@ module.exports = class extends Generator {
                 namePascalCase: namePascalCase
             }
         );
+
+        let filename = this.destinationPath('app/infrastructure/repositories/__init__.py');
+        fs.appendFileSync(filename, `from .${nameSnakeCase} import ${namePascalCase}RepositoryImpl\n`);
+        this.log(`${namePascalCase} was appended to ${filename}!`);
     }
 };
