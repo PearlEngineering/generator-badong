@@ -29,6 +29,17 @@
 
 ## Running tests:
 
+- Export required paths:
+	```ssh
+	$ export PYTHONPATH=app/:tests/
+	```
+
+- Run migrations:
+	```ssh
+	$ python app/manage.py makemigrations
+	$ python app/manage.py migrate
+	```
+
 - Run tests
 	```ssh
 	$ export PYTHONPATH=app/:tests/

@@ -47,13 +47,15 @@ module.exports = class extends Generator {
         const nameSnakeCase = name.toLowerCase().replace(/[\W_]+/g,"_");
         const nameCamelCase = _.camelCase(name);
         const namePascalCase = _.upperFirst(nameCamelCase);
+        const parentFolderName = this.destinationPath().split('/').slice(-1)[0];
         this.fs.copyTpl(
             glob.sync(this.templatePath('**'),
             { dot: true }), 
             this.destinationPath(), 
             {
                 nameSnakeCase: nameSnakeCase,
-                namePascalCase: namePascalCase
+                namePascalCase: namePascalCase,
+                parentFolderName: parentFolderName
             }
         );
 

@@ -128,5 +128,4 @@ REST_FRAMEWORK = {
 }
 
 INJECTOR_MODULES = [
-    "modules.TestModule"
 ]
