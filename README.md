@@ -59,7 +59,7 @@ $ npm install -g yo generator-badong
 Available generators:
 
 * [badong](#app) (aka [badong:app](#app))
-* [badong:scaffold](#scaffold)
+* [badong:generate](#generate)
 
 ### App
 Sets up a new PearlPay backend microservice, generating all the boilerplate you need to get started.
@@ -71,7 +71,7 @@ Usage:
 ```
 
 ### Generate
-Generates and wires a model, view, repository and test artifacts.
+Generates and wires a model, view, service, repository and test artifacts.
 
 Example:
 ```bash
