@@ -1,9 +1,10 @@
 {
   "name": "generator-badong",
-  "version": "0.0.4",
+  "version": "0.0.5",
   "description": "",
   "files": [
-    "generators"
+    "generators",
+    "prompts.js"
   ],
   "main": "index.js",
   "scripts": {

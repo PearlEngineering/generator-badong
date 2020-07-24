@@ -18,7 +18,7 @@
 const Generator = require('yeoman-generator');
 const glob = require('glob');
 
-const prompts = require('../../prompts');
+const prompts = require('./../../prompts');
 
 module.exports = class extends Generator {
     
