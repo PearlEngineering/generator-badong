@@ -73,6 +73,9 @@ Available generators:
 * [badong:infra-view](#infra-view)
 * [badong:infra-integration](#infra-integration)
 * [badong:infra-unit](#infra-unit)
+* [badong:repo](#repo)
+* [badong:service](#service)
+* [badong:view](#view)
 
 ### App
 Sets up a new PearlPay backend microservice, generating all the boilerplate you need to get started.
@@ -205,6 +208,33 @@ Generates unit test artifact.
 Example:
 ```bash
     $ yo badong:test-unit
+    ? What is the name? newModel
+```
+
+### Repo
+Generates repository artifacts (app-dto + app-model + app-repo + infra-model + infra-repo).
+
+Example:
+```bash
+    $ yo badong:repo
+    ? What is the name? newModel
+```
+
+### Service
+Generates service artifacts (app-service + infra-service).
+
+Example:
+```bash
+    $ yo badong:service
+    ? What is the name? newModel
+```
+
+### View
+Generates view artifacts (app-use-case + infra-view).
+
+Example:
+```bash
+    $ yo badong:view
     ? What is the name? newModel
 ```
 
