@@ -18,6 +18,9 @@
  */
 const Generator = require('yeoman-generator');
 const glob = require('glob');
+const _ = require('lodash');
+const fs = require('fs');
+const insertLine = require('insert-line');
 
 const prompts = require('./prompts');
 
@@ -45,5 +48,42 @@ module.exports = class extends Generator {
                 nameDashSeparated: nameDashSeparated
             }
         );
+
+
+        // Integrate microservice with ingress cluster
+        let filename = this.destinationPath(`local-ingress.yaml`);
+        let data = fs.readFileSync(filename).toString().split('\n');
+        let insertIndex = data.indexOf('        paths:') + 2;
+
+        insertLine(filename)
+            .contentSync(
+                `          - path: /${nameDashSeparated}-api
+            backend:
+              serviceName: ${nameDashSeparated}
+              servicePort: 8081`
+                )
+            .at(insertIndex);
+
+        // Integrate microservice with skaffold
+        filename = this.destinationPath(`skaffold.yaml`);
+        data = fs.readFileSync(filename).toString().split('\n');
+        
+        insertIndex = data.indexOf('  artifacts:') + 2;
+
+        insertLine(filename)
+            .contentSync(
+                `    - image: ${nameDashSeparated}
+      context: ${nameDashSeparated}`
+                )
+            .at(insertIndex);
+
+        data = fs.readFileSync(filename).toString().split('\n');
+        insertIndex = data.indexOf('    manifests:') + 2;
+
+        insertLine(filename)
+            .contentSync(
+                `      - ${nameDashSeparated}/k8s/dev/*.yaml`
+                )
+            .at(insertIndex);
     }
 };

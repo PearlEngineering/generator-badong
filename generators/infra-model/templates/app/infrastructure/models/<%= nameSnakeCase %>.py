@@ -18,6 +18,6 @@ class <%= namePascalCase %>Model(BaseModel):
         constraints = [
             models.UniqueConstraint(
                 fields=['name'],
-                name='unique_name'
+                name='unique_<%= nameSnakeCase %>_name'
             )
         ]

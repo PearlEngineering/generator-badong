@@ -46,7 +46,6 @@ module.exports = class extends Generator {
             '../infra-serializer',
             '../infra-service',
             '../infra-view',
-            '../test-integration',
             '../test-unit'
         ];
         

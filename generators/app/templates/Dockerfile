@@ -1,26 +1,24 @@
-FROM ubuntu:18.04
+FROM python:3.8.4
 
-EXPOSE 8080
+RUN apt-get update
+RUN apt-get -y upgrade
+RUN apt-get install -y python3-pip default-libmysqlclient-dev libssl-dev build-essential libgnutls30
+RUN python3.8 -m pip install mysqlclient gunicorn
+RUN apt-get install -y mariadb-server-10.3
+RUN mkdir app
 
-ENV DATABASE_NAME=""
-ENV DATABASE_USER=""
-ENV DATABASE_PASSWORD=""
-ENV DATABASE_HOST=""
-ENV DATABASE_PORT=""
-ENV PYTHONPATH="/app"
-
-RUN apt-get update && \
-    apt-get -y upgrade && \
-    apt-get install -y python3.7 python3.7-dev python3-pip default-libmysqlclient-dev libssl-dev build-essential libgnutls30 && \
-    python3.7 -m pip install mysqlclient gunicorn && \
-    apt-get install -y mysql-server && \
-    mkdir app
-
-COPY ./app /app
+COPY ./app/requirements.txt /app/requirements.txt
 WORKDIR /app
 
-RUN python3.7 -m pip install -r requirements.txt && \
-    python3.7 manage.py collectstatic --noinput
+RUN python3.8 -m pip install -r requirements.txt
+
+COPY ./app /app
+
+EXPOSE 8081
+
+ENV PYTHONPATH="/app"
+
+RUN python3.8 manage.py collectstatic --noinput
 
 # Use gunicorn
-CMD ["gunicorn", "-w", "4", "-b", ":8080", "--access-logfile", "-", "--error-logfile", "-", "<%= name %>.wsgi"]
+CMD ["gunicorn", "-w", "4", "-b", ":8081", "--access-logfile", "-", "--error-logfile", "-", "--log-level", "debug", "<%= name %>.wsgi"]

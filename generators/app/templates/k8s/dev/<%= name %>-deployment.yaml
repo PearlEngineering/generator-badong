@@ -1,0 +1,51 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: <%= nameDashSeparated %>
+  labels:
+    app: <%= nameDashSeparated %>
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: <%= nameDashSeparated %>
+  template:
+    metadata:
+      labels:
+        app: <%= nameDashSeparated %>
+    spec:
+      containers:
+        - name: <%= nameDashSeparated %>
+          image: <%= nameDashSeparated %>
+          ports:
+            - containerPort: 8081
+          env:
+            - name: AWS_REGION
+              value: "ap-southeast-1"
+            - name: AWS_ACCESS_KEY
+              value: "AKIATAETL5VIC2RZU5G2"
+            - name: AWS_SECRET_KEY
+              value: "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"
+            - name: SQS_URL
+              value: "<PUT VALUE HERE>"
+            - name: DATABASE_HOST
+              value: "<%= nameDashSeparated %>-db-service"
+            - name: COGNITO_USER_POOL
+              value: "<PUT VALUE HERE>"
+            - name: COGNITO_CLIENT_ID
+              value: "<PUT VALUE HERE>"
+          lifecycle:
+            postStart:
+              exec:
+                command: ["python3.8", "manage.py", "migrate"]
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: <%= nameDashSeparated %>
+spec:
+  selector:
+    app: <%= nameDashSeparated %>
+  ports:
+    - protocol: TCP
+      port: 8081
