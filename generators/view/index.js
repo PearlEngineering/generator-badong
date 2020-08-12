@@ -36,6 +36,7 @@ module.exports = class extends Generator {
         let args = { options }
         let subgens = [
             '../app-use-case',
+            '../infra-serializer',
             '../infra-view',
         ];
         

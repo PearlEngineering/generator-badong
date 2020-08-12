@@ -76,6 +76,7 @@ Available generators:
 * [badong:repo](#repo)
 * [badong:service](#service)
 * [badong:view](#view)
+* [badong:crud](#crud)
 
 ### App
 Sets up a new PearlPay backend microservice, generating all the boilerplate you need to get started.
@@ -230,11 +231,20 @@ Example:
 ```
 
 ### View
-Generates view artifacts (app-use-case + infra-view).
+Generates view artifacts (app-use-case + infra-serializer + infra-view).
 
 Example:
 ```bash
     $ yo badong:view
+    ? What is the name? newModel
+```
+
+### Crud
+Generates crud artifacts, it also adds a new view that uses django ViewSets instead of ViewAPI. (app-dto + app-model + app-repo + infra-model + infra-repo + infra-serializer)
+
+Example:
+```bash
+    $ yo badong:crud
     ? What is the name? newModel
 ```
 
