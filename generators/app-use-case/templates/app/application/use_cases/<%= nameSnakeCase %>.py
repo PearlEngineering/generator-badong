@@ -11,5 +11,5 @@ class <%= namePascalCase %>UseCase:
     def __init__(self, <%= nameSnakeCase %>_service: <%= namePascalCase %>Service):
         self.<%= nameSnakeCase %>_service = <%= nameSnakeCase %>_service
 
-    def create(self, <%= nameSnakeCase %>: <%= namePascalCase %>Dto):
-        return self.<%= nameSnakeCase %>_service.create(asdict(<%= nameSnakeCase %>))
+    def <%= nameSnakeCase %>(self, <%= nameSnakeCase %>: <%= namePascalCase %>Dto):
+        return self.<%= nameSnakeCase %>_service.<%= nameSnakeCase %>(asdict(<%= nameSnakeCase %>))

@@ -36,7 +36,7 @@ module.exports = class extends Generator {
         let args = { options }
         let subgens = [
             '../app-dto',
-            '../app-model',
+            '../domain',
             '../app-repo',
             '../app-service',
             '../app-use-case',
@@ -46,7 +46,7 @@ module.exports = class extends Generator {
             '../infra-serializer',
             '../infra-service',
             '../infra-view',
-            '../test-unit'
+            '../test-component'
         ];
         
         subgens.forEach(subgen => me.composeWith(

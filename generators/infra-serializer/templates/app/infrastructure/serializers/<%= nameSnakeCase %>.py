@@ -22,5 +22,5 @@ class <%= namePascalCase %>Serializer(serializers.Serializer):
 
     age = serializers.IntegerField()
 
-    def create(self, validated_data) -> <%= namePascalCase %>Dto:
+    def <%= nameSnakeCase %>(self, validated_data) -> <%= namePascalCase %>Dto:
         return <%= namePascalCase %>Dto(**validated_data)

@@ -36,7 +36,7 @@ module.exports = class extends Generator {
         let args = { options }
         let subgens = [
             '../app-dto',
-            '../app-model',
+            '../domain',
             '../app-repo',
             '../infra-model',
             '../infra-repo'

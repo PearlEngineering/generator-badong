@@ -4,6 +4,6 @@ from domain import <%= namePascalCase %>
 
 class Mock<%= namePascalCase %>Repository(<%= namePascalCase %>Repository):
 
-    def create(self, <%= nameSnakeCase %>: <%= namePascalCase %>) -> <%= namePascalCase %>:
+    def <%= nameSnakeCase %>(self, <%= nameSnakeCase %>: <%= namePascalCase %>) -> <%= namePascalCase %>:
         return { 'foo': 'bar' }
 

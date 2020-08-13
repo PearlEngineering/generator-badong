@@ -61,7 +61,7 @@ Available generators:
 * [badong](#app) (aka [badong:app](#app))
 * [badong:generate](#generate)
 * [badong:app-dto](#app-dto)
-* [badong:app-model](#app-model)
+* [badong:domain](#domain)
 * [badong:app-repo](#app-repo)
 * [badong:app-service](#app-service)
 * [badong:app-use-case](#app-use-case)
@@ -71,12 +71,12 @@ Available generators:
 * [badong:infra-serializer](#infra-serializer)
 * [badong:infra-service](#infra-service)
 * [badong:infra-view](#infra-view)
-* [badong:infra-integration](#infra-integration)
 * [badong:infra-unit](#infra-unit)
 * [badong:repo](#repo)
 * [badong:service](#service)
 * [badong:view](#view)
 * [badong:crud](#crud)
+* [badong:test-component](#test-component)
 
 ### App
 Sets up a new PearlPay backend microservice, generating all the boilerplate you need to get started.
@@ -110,7 +110,7 @@ Generates application model artifact.
 
 Example:
 ```bash
-    $ yo badong:app-model
+    $ yo badong:domain
     ? What is the name? newModel
 ```
 
@@ -194,26 +194,9 @@ Example:
     ? What is the name? newModel
 ```
 
-### Test-Integration
-Generates integration test artifact.
-
-Example:
-```bash
-    $ yo badong:test-integration
-    ? What is the name? newModel
-```
-
-### Test-Unit
-Generates unit test artifact.
-
-Example:
-```bash
-    $ yo badong:test-unit
-    ? What is the name? newModel
-```
 
 ### Repo
-Generates repository artifacts (app-dto + app-model + app-repo + infra-model + infra-repo).
+Generates repository artifacts (app-dto + domain + app-repo + infra-model + infra-repo).
 
 Example:
 ```bash
@@ -240,13 +223,24 @@ Example:
 ```
 
 ### Crud
-Generates crud artifacts, it also adds a new view that uses django ViewSets instead of ViewAPI. (app-dto + app-model + app-repo + infra-model + infra-repo + infra-serializer)
+Generates crud artifacts, it also adds a new view that uses django ViewSets instead of ViewAPI. (app-dto + domain + app-repo + infra-model + infra-repo + infra-serializer)
 
 Example:
 ```bash
     $ yo badong:crud
     ? What is the name? newModel
 ```
+
+
+### Test-Component
+Generates component test artifacts.
+
+Example:
+```bash
+    $ yo badong:test-component
+    ? What is the name? newModel
+```
+
 
 ## Team
 

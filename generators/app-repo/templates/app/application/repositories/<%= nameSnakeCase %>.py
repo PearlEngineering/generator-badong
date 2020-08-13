@@ -6,5 +6,5 @@ from domain import <%= namePascalCase %>
 class <%= namePascalCase %>Repository(ABC):
 
     @abstractmethod
-    def create(self, <%= nameSnakeCase %>: <%= namePascalCase %>) -> <%= namePascalCase %>:
+    def <%= nameSnakeCase %>(self, <%= nameSnakeCase %>: <%= namePascalCase %>) -> <%= namePascalCase %>:
         raise NotImplementedError()

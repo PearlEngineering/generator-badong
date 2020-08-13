@@ -8,5 +8,5 @@ from domain import <%= namePascalCase %>
 
 
 class Mock<%= namePascalCase %>ServiceImpl(<%= namePascalCase %>Service):
-    def create(self, <%= nameSnakeCase %>):
+    def <%= nameSnakeCase %>(self, <%= nameSnakeCase %>):
         return { 'foo': 'bar' }

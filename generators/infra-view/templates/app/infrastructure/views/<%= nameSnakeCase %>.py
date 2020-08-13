@@ -33,6 +33,6 @@ class <%= namePascalCase %>ViewAPI(APIView):
 
         <%= nameSnakeCase %> = serializer.save()
 
-        response = <%= nameSnakeCase %>_use_case.create(<%= nameSnakeCase %>)
+        response = <%= nameSnakeCase %>_use_case.<%= nameSnakeCase %>(<%= nameSnakeCase %>)
 
         return Response(response, status=HTTPStatus.CREATED)

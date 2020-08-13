@@ -7,7 +7,7 @@ from infrastructure.models import <%= namePascalCase %>Model
 
 class <%= namePascalCase %>RepositoryImpl(<%= namePascalCase %>Repository):
 
-    def create(self, <%= nameSnakeCase %>: <%= namePascalCase %>) -> <%= namePascalCase %>:
+    def <%= nameSnakeCase %>(self, <%= nameSnakeCase %>: <%= namePascalCase %>) -> <%= namePascalCase %>:
         <%= nameSnakeCase %>_model = <%= namePascalCase %>Model.objects.from_entity(<%= nameSnakeCase %>)
         try:
             <%= nameSnakeCase %>_model.save()

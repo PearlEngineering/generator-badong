@@ -12,7 +12,7 @@ class <%= namePascalCase %>ServiceImpl(<%= namePascalCase %>Service):
     def __init__(self, <%= nameSnakeCase %>_repository: <%= namePascalCase %>Repository):
         self.<%= nameSnakeCase %>_repository = <%= nameSnakeCase %>_repository
 
-    def create(self, <%= nameSnakeCase %>):
+    def <%= nameSnakeCase %>(self, <%= nameSnakeCase %>):
         <%= nameSnakeCase %> = <%= namePascalCase %>(**<%= nameSnakeCase %>)
 
-        <%= nameSnakeCase %> = self.<%= nameSnakeCase %>_repository.create(<%= nameSnakeCase %>)
+        <%= nameSnakeCase %> = self.<%= nameSnakeCase %>_repository.<%= nameSnakeCase %>(<%= nameSnakeCase %>)
